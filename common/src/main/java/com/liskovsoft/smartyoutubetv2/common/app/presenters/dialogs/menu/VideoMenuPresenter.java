@@ -110,6 +110,7 @@ public class VideoMenuPresenter extends BaseMenuPresenter {
     private boolean mIsMarkAsWatchedButtonEnabled;
     private boolean mIsShufflePlaylistButtonEnabled;
     private boolean mIsShuffleChannelButtonEnabled;
+    private boolean mIsStartMixButtonEnabled;
     private VideoMenuCallback mCallback;
     private List<PlaylistInfo> mPlaylistInfos;
     private final Map<Long, MenuAction> mMenuMapping = new HashMap<>();
@@ -687,6 +688,20 @@ public class VideoMenuPresenter extends BaseMenuPresenter {
                 ));
     }
 
+    private void appendStartMixButton() {
+        if (!mIsStartMixButtonEnabled || mVideo == null || !mVideo.hasVideo()) {
+            return;
+        }
+
+        mDialogPresenter.appendSingleButton(
+                UiOptionItem.from(getContext().getString(R.string.start_mix),
+                        optionItem -> {
+                            PlaybackPresenter.instance(getContext()).startMix(mVideo);
+                            mDialogPresenter.closeDialog();
+                        }
+                ));
+    }
+
     private void showLongTextDialog(String description) {
         mDialogPresenter.appendLongTextCategory(mVideo.getTitle(), UiOptionItem.from(description));
         mDialogPresenter.showDialog(mVideo.getTitle());
@@ -1004,6 +1019,7 @@ public class VideoMenuPresenter extends BaseMenuPresenter {
         mIsOpenCommentsButtonEnabled = mainUIData.isMenuItemEnabled(MainUIData.MENU_ITEM_OPEN_COMMENTS);
         mIsShufflePlaylistButtonEnabled = mainUIData.isMenuItemEnabled(MainUIData.MENU_ITEM_SHUFFLE_PLAYLIST);
         mIsShuffleChannelButtonEnabled = mainUIData.isMenuItemEnabled(MainUIData.MENU_ITEM_SHUFFLE_CHANNEL);
+        mIsStartMixButtonEnabled = mainUIData.isMenuItemEnabled(MainUIData.MENU_ITEM_START_MIX);
     }
 
     private void initMenuMapping() {
@@ -1012,6 +1028,7 @@ public class VideoMenuPresenter extends BaseMenuPresenter {
         mMenuMapping.put(MainUIData.MENU_ITEM_PLAY_VIDEO, new MenuAction(this::appendPlayVideoButton, false));
         mMenuMapping.put(MainUIData.MENU_ITEM_PLAY_VIDEO_INCOGNITO, new MenuAction(this::appendPlayVideoIncognitoButton, false));
         mMenuMapping.put(MainUIData.MENU_ITEM_PLAY_FROM_START, new MenuAction(this::appendPlayFromStartButton, false));
+        mMenuMapping.put(MainUIData.MENU_ITEM_START_MIX, new MenuAction(this::appendStartMixButton, false));
         mMenuMapping.put(MainUIData.MENU_ITEM_REMOVE_FROM_HISTORY, new MenuAction(this::appendRemoveFromHistoryButton, false));
         mMenuMapping.put(MainUIData.MENU_ITEM_STREAM_REMINDER, new MenuAction(this::appendStreamReminderButton, false));
         mMenuMapping.put(MainUIData.MENU_ITEM_RECENT_PLAYLIST, new MenuAction(this::appendAddToRecentPlaylistButton, false));

@@ -36,6 +36,7 @@ SmartTube is a free and open-source media client for Android TVs and TV boxes. I
 - View live chat  
 - Customizable buttons  
 - Shuffle playlists & channels  
+- Start mix (radio-style infinite playback)  
 - Does not require Google Services  
 - Helpful international community
 
@@ -173,6 +174,11 @@ You can adjust the playback speed pressing the speed-indicator icon (gauge) in t
 ### Shuffle Playlists & Channels
 
 You can shuffle any playlist or channel's uploads by long-pressing a video, playlist, or channel card and selecting _Shuffle playlist_ or _Shuffle channel_ from the context menu. SmartTube loads all available videos, shuffles them, and plays them back in a random order. The shuffled list is cached so that launching the same shuffle again starts playback instantly.
+
+
+### Start Mix
+
+You can start a mix (radio-style infinite playback) from any video. Long-press a video card and select _Start mix_ from the context menu, or press the mix button in the player toolbar while watching. SmartTube uses YouTube's algorithmic radio to queue a continuous stream of related videos.
 
 
 ### Voice Search

@@ -798,6 +798,7 @@ public class GeneralSettingsPresenter extends BasePresenter<Void> {
         menuNames.put(MainUIData.MENU_ITEM_BLOCK_CHANNEL, R.string.dialog_block_channel);
         menuNames.put(MainUIData.MENU_ITEM_SHUFFLE_PLAYLIST, R.string.shuffle_playlist);
         menuNames.put(MainUIData.MENU_ITEM_SHUFFLE_CHANNEL, R.string.shuffle_channel);
+        menuNames.put(MainUIData.MENU_ITEM_START_MIX, R.string.start_mix);
 
         for (ContextMenuProvider provider : new ContextMenuManager(getContext()).getProviders()) {
             menuNames.put(provider.getId(), provider.getTitleResId());
